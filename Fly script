@@ -1,0 +1,24 @@
+getgenv().grifis = game:GetService("UserInputService");
+getgenv().player = game:GetService("Players").LocalPlayer.Character;
+
+function volo(bool, speed, jump, gravity, mode)
+    spawn(function ()
+        player.Humanoid:ChangeState(mode);
+        player.Humanoid:SetStateEnabled("GettingUp", bool);
+        player.Humanoid.WalkSpeed = speed;
+        player.Humanoid.JumpPower = jump;
+        game.Workspace.Gravity = gravity;
+    end)
+end
+
+function main()
+    grifis.InputBegan:Connect(function(tastino)
+        if tastino.KeyCode == Enum.KeyCode.E then
+            volo(false, 100, 0, 0, "Swimming");  
+        elseif tastino.KeyCode == Enum.KeyCode.Q then
+            volo(true, 16, 50, 192, "Walking");
+        end
+    end)
+end
+
+main();
